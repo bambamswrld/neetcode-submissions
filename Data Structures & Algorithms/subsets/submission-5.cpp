@@ -1,0 +1,24 @@
+class Solution {
+private:
+    std::vector<std::vector<int>> res;
+    void dfs(vector<int>& nums, vector<int>& subset, int i)
+    {
+        if(i >= nums.size())
+        {
+            res.push_back(subset);
+            return;
+        }
+
+        subset.push_back(nums[i]);
+        dfs(nums, subset, i + 1);
+        subset.pop_back();
+        dfs(nums, subset, i + 1);
+    }
+public: 
+    vector<vector<int>> subsets(vector<int>& nums) {
+        res.clear();
+        std::vector<int> subset;
+        dfs(nums, subset, 0);
+        return res;
+    }
+};
